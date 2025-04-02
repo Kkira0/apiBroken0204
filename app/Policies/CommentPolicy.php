@@ -11,4 +11,9 @@ class CommentPolicy
     {
         return $user->id === $comment->user()->user_id;
     }
+
+    public function modify(User $user, Post $post): Response
+    {
+        return $user->id === $comment->user()->user_id ? Response::allow() : Response::deny("You do not own this post");
+    }
 }
