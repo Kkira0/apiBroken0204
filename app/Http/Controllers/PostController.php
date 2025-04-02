@@ -31,7 +31,8 @@ class PostController extends Controller implements HasMiddleware
     {
         $fields = $request->validate([
             'title' => 'required|max:255',
-            'body' => 'required'
+            'body' => 'required',
+            'post_status_id' => 'required|exists:post_statuses,id'
         ]);
 
         $post = $request->user()->posts()->create($fields);
